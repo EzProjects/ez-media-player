@@ -56,10 +56,18 @@
         android:background="#888"></com.xulaoyao.ez_video_player.EzVideoPlayerView>
 
     <TextView
+        android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:text="下面放各种视频信息"
         app:layout_constraintTop_toBottomOf="@+id/ez_vpv" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="播放"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
 
 </android.support.constraint.ConstraintLayout>

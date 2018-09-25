@@ -8,6 +8,8 @@ import com.xulaoyao.ez_video_player.listener.IPlayer;
 /**
  * 只包含最基础的播放器功能，MediaPlayer可以替换成其他框架的播放器
  * 视频播放基类
+ * 实现类参见 player
+ * {@link com.xulaoyao.ez_video_player.player.SystemMediaPlayer}
  * EzVideoPlayer
  * Created by renwoxing on 2018/1/22.
  */
@@ -21,7 +23,7 @@ public abstract class EzVideoPlayer implements IPlayer {
     public static final int STATE_PAUSED = 4;
     public static final int STATE_PLAYBACK_COMPLETED = 5;
     private static final String TAG = "ezVideoPlayer";
-    //private MediaPlayer player;
+
     // 保留
     protected int curState = STATE_IDLE;
 
@@ -45,10 +47,7 @@ public abstract class EzVideoPlayer implements IPlayer {
     }
 
     public String getVideoPath() {
-        if (path == null)
-            return "";
         return path;
-
     }
 //
 //    public void setVideoPath(String path) {
@@ -62,13 +61,20 @@ public abstract class EzVideoPlayer implements IPlayer {
         if (callback != null) {
             callback.onStateChanged(curState);
             switch (state) {
-                case STATE_IDLE:
-                case STATE_ERROR:
+//                case STATE_IDLE:
+//                    callback.onLoadingChanged(false);
+//                    break;
+//                case STATE_ERROR:
+//                    callback.onLoadingChanged(false);
+//                    break;
                 case STATE_PREPARED:
                     callback.onLoadingChanged(false);
                     break;
                 case STATE_PREPARING:
                     callback.onLoadingChanged(true);
+                    break;
+                default:
+                    callback.onLoadingChanged(false);
                     break;
             }
         }

@@ -22,6 +22,7 @@ public class EzVideoPlayerErrorView extends FrameLayout {
     public static final int STATUS_VIDEO_SRC_ERROR = 2;
     public static final int STATUS_UN_WIFI_ERROR = 3;
     public static final int STATUS_NO_NETWORK_ERROR = 4;
+    public static final int STATUS_VIDEO_SRC_NULL = 5;
 
     private int curStatus;
     private TextView video_error_info;
@@ -90,6 +91,10 @@ public class EzVideoPlayerErrorView extends FrameLayout {
                 video_error_info.setText("网络连接异常，请检查网络设置后重试");
                 video_error_retry.setText("重试");
                 break;
+            case STATUS_VIDEO_SRC_NULL:
+                Log.i("DDD", "showNoNetWorkError");
+                video_error_info.setText("视频为空");
+                video_error_retry.setText("请重新加载视频");
             case STATUS_UN_WIFI_ERROR:
                 Log.i("DDD", "showUnWifiError");
                 video_error_info.setText("温馨提示：您正在使用非WiFi网络，播放将产生流量费用");

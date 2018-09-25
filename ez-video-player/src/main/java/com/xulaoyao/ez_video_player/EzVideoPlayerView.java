@@ -28,6 +28,9 @@ import com.xulaoyao.ez_video_player.view.EzVideoPlayerControllerView;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerProgressOverlay;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerSystemOverlay;
 
+import static com.xulaoyao.ez_video_player.EzVideoPlayer.STATE_IDLE;
+import static com.xulaoyao.ez_video_player.view.EzVideoPlayerErrorView.STATUS_VIDEO_SRC_NULL;
+
 /**
  * EzVideoView
  * Created by renwoxing on 2018/1/22.
@@ -75,6 +78,8 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
         videoSystemOverlay = (EzVideoPlayerSystemOverlay) findViewById(R.id.ez_video_player_system_overlay);
         videoProgressOverlay = (EzVideoPlayerProgressOverlay) findViewById(R.id.ez_video_player_progress_overlay);
 
+        hideLoading();
+
         initPlayer();
 
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -101,6 +106,7 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
         });
 
         registerNetChangedReceiver();
+
     }
 
     private void initPlayer() {
@@ -110,12 +116,13 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
             @Override
             public void onStateChanged(int curState) {
                 switch (curState) {
-                    case EzVideoPlayer.STATE_IDLE:
+                    case STATE_IDLE:
                         am.abandonAudioFocus(null);
                         break;
                     case EzVideoPlayer.STATE_PREPARING:
                         am.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
                         break;
+                    default:
                 }
             }
 
@@ -126,6 +133,11 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
 
             @Override
             public void onError(int what, int extra) {
+                Log.i("--initPlayer--", "onError code: " + what);
+                if (mMediaPlayer.curState == STATE_IDLE) {
+                    //mediaController.checkShowError(false);
+                    mediaController.showError(STATUS_VIDEO_SRC_NULL);
+                }
                 mediaController.checkShowError(false);
             }
 
@@ -182,7 +194,7 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
         if (video == null) {
             return;
         }
-
+        showLoading();
         mMediaPlayer.reset();
 //        String videoPath = video.getVideoPath();
 //        mediaController.setVideoInfo(video);

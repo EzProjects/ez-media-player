@@ -3,7 +3,9 @@ package com.xulaoyao.ezmediaplayer;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.xulaoyao.ez_video_player.EzVideoPlayerView;
 import com.xulaoyao.ez_video_player.listener.SimpleOnVideoControlListener;
@@ -66,8 +68,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        EzVideoInfo info = new EzVideoInfo("----标题", VIDEO_URL);
-        mVideoView.startPlayVideo(info);
+
+//        EzVideoInfo info = new EzVideoInfo("----标题", VIDEO_URL);
+//        mVideoView.startPlayVideo(info);
+
+        Button btnPlay = (Button) findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EzVideoInfo info = new EzVideoInfo("----标题", VIDEO_URL);
+                mVideoView.startPlayVideo(info);
+            }
+        });
+
+
 
 
     }

@@ -361,7 +361,7 @@ public class EzVideoPlayerControllerView extends FrameLayout {
         }
     }
 
-    private void showError(int status) {
+    public void showError(int status) {
         mErrorView.showError(status);
         hide();
 

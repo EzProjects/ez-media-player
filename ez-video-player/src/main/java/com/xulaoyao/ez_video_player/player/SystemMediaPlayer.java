@@ -43,7 +43,8 @@ public class SystemMediaPlayer extends EzVideoPlayer {
         }
         // we shouldn't clear the target state, because somebody might have
         // called start() previously
-        reset();
+        if (isInPlaybackState())
+            reset();
 
         try {
             player = new MediaPlayer();
@@ -88,6 +89,7 @@ public class SystemMediaPlayer extends EzVideoPlayer {
                 public void onPrepared(MediaPlayer mp) {
                     setCurrentState(STATE_PREPARED);
                     if (callback != null) {
+                        callback.onLoadingChanged(false);
                         callback.onPrepared();
                     }
                 }
@@ -122,8 +124,11 @@ public class SystemMediaPlayer extends EzVideoPlayer {
 
     @Override
     public void setDataSource(EzVideoInfo info) {
-        if (info != null)
-            super.path = info.getVideoPath();
+        if (info != null) {
+            path = info.getVideoPath();
+            Log.d(TAG, "setDataSource: 设置视频路径 -------- path:" + path);
+            openVideo();
+        }
     }
 
     @Override
@@ -137,7 +142,10 @@ public class SystemMediaPlayer extends EzVideoPlayer {
 
     @Override
     public void start(int msc) {
-
+        if (isInPlaybackState()) {
+            player.start();
+            setCurrentState(STATE_PLAYING);
+        }
     }
 
     @Override
