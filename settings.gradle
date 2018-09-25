@@ -1,1 +1,1 @@
-include ':app', ':ez-media-player-lib'
+include ':app', ':ez-video-player'

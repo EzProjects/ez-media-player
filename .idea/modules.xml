@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EzMediaPlayer.iml" filepath="$PROJECT_DIR$/EzMediaPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ez-media-player-lib/ez-media-player-lib.iml" filepath="$PROJECT_DIR$/ez-media-player-lib/ez-media-player-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ez-video-player/ez-video-player.iml" filepath="$PROJECT_DIR$/ez-video-player/ez-video-player.iml" />
     </modules>
   </component>
 </project>
