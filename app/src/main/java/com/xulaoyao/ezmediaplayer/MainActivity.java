@@ -17,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     //private static final String VIDEO_URL = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
     //private static final String VIDEO_URL = "http://developv.xy.jxcstatic.com/0548EFB26CEEA9D1FB2E8BAC35A82F3E";
-    private static final String VIDEO_URL = "http://jxcvideo.xy.jxcstatic.com/56B75A564A415FBE28AD2231A3E94CDF";
+    //private static final String VIDEO_URL = "http://jxcvideo.xy.jxcstatic.com/56B75A564A415FBE28AD2231A3E94CDF";
+    private static final String VIDEO_URL = "http://jxcvideo.xy.jxcstatic.com/A8386451B572D93CACC24BCC6B3F2339";
+    //
+
     //private AndroidMediaController mMediaController;
 
     // Used to load the 'native-lib' library on application startup.

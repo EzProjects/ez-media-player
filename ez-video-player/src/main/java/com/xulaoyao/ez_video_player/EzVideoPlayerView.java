@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Parcelable;
@@ -22,6 +21,7 @@ import android.widget.FrameLayout;
 import com.xulaoyao.ez_video_player.listener.EzVideoPlayerControlListener;
 import com.xulaoyao.ez_video_player.listener.SimplePlayerCallback;
 import com.xulaoyao.ez_video_player.model.EzVideoInfo;
+import com.xulaoyao.ez_video_player.player.SystemMediaPlayer;
 import com.xulaoyao.ez_video_player.util.NetworkUtils;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerBehaviorView;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerControllerView;
@@ -104,7 +104,7 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
     }
 
     private void initPlayer() {
-        mMediaPlayer = new EzVideoPlayer();
+        mMediaPlayer = new SystemMediaPlayer();
         mMediaPlayer.setCallback(new SimplePlayerCallback() {
 
             @Override
@@ -120,12 +120,12 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
             }
 
             @Override
-            public void onCompletion(MediaPlayer mp) {
+            public void onCompletion() {
                 mediaController.updatePausePlay();
             }
 
             @Override
-            public void onError(MediaPlayer mp, int what, int extra) {
+            public void onError(int what, int extra) {
                 mediaController.checkShowError(false);
             }
 
@@ -136,7 +136,7 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
             }
 
             @Override
-            public void onPrepared(MediaPlayer mp) {
+            public void onPrepared() {
                 mMediaPlayer.start();
                 mediaController.show();
                 mediaController.hideErrorView();
@@ -184,10 +184,12 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
         }
 
         mMediaPlayer.reset();
+//        String videoPath = video.getVideoPath();
+//        mediaController.setVideoInfo(video);
+//        mMediaPlayer.setVideoPath(videoPath);
 
-        String videoPath = video.getVideoPath();
         mediaController.setVideoInfo(video);
-        mMediaPlayer.setVideoPath(videoPath);
+        mMediaPlayer.setDataSource(video);
     }
 
     @Override

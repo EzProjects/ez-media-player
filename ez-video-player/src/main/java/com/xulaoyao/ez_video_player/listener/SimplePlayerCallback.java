@@ -1,31 +1,29 @@
 package com.xulaoyao.ez_video_player.listener;
 
-import android.media.MediaPlayer;
-
 public class SimplePlayerCallback implements EzVideoPlayerCallback {
 
     @Override
-    public void onPrepared(MediaPlayer mp) {
+    public void onPrepared() {
 
     }
 
     @Override
-    public void onBufferingUpdate(MediaPlayer mp, int percent) {
+    public void onBufferingUpdate(int percent) {
 
     }
 
     @Override
-    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+    public void onVideoSizeChanged(int width, int height) {
 
     }
 
     @Override
-    public void onCompletion(MediaPlayer mp) {
+    public void onCompletion() {
 
     }
 
     @Override
-    public void onError(MediaPlayer mp, int what, int extra) {
+    public void onError(int what, int extra) {
 
     }
 

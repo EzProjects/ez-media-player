@@ -10,24 +10,24 @@ public interface EzVideoPlayerCallback {
     /**
      * 准备完成
      */
-    void onPrepared(MediaPlayer mp);
+    void onPrepared();
 
     /**
      * 视频size变化
      */
-    void onVideoSizeChanged(MediaPlayer mp, int width, int height);
+    void onVideoSizeChanged(int width, int height);
 
     /**
      * 缓存更新变化
      *
      * @param percent 缓冲百分比
      */
-    void onBufferingUpdate(MediaPlayer mp, int percent);
+    void onBufferingUpdate(int percent);
 
     /**
      * 播放完成
      */
-    void onCompletion(MediaPlayer mp);
+    void onCompletion();
 
     /**
      * 视频错误
@@ -46,7 +46,7 @@ public interface EzVideoPlayerCallback {
      *              <li><code>MEDIA_ERROR_SYSTEM (-2147483648)</code> - low-level system error.
      *              </ul>
      */
-    void onError(MediaPlayer mp, int what, int extra);
+    void onError(int what, int extra);
 
     /**
      * 视频加载状态变化

@@ -317,7 +317,7 @@ public class EzVideoPlayerControllerView extends FrameLayout {
     }
 
     private void reload() {
-        mPlayer.restart();
+        mPlayer.resume();
     }
 
     public void release() {
@@ -402,7 +402,7 @@ public class EzVideoPlayerControllerView extends FrameLayout {
         if (mPlayer.isInPlaybackState()) {
             mPlayer.start();
         } else {
-            mPlayer.restart();
+            mPlayer.resume();
         }
     }
 
