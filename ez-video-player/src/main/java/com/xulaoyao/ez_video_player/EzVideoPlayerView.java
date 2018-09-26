@@ -21,7 +21,7 @@ import android.widget.FrameLayout;
 import com.xulaoyao.ez_video_player.listener.EzVideoPlayerControlListener;
 import com.xulaoyao.ez_video_player.listener.SimplePlayerCallback;
 import com.xulaoyao.ez_video_player.model.EzVideoInfo;
-import com.xulaoyao.ez_video_player.player.SystemMediaPlayer;
+import com.xulaoyao.ez_video_player.player.ExoMediaPlayer;
 import com.xulaoyao.ez_video_player.util.NetworkUtils;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerBehaviorView;
 import com.xulaoyao.ez_video_player.view.EzVideoPlayerControllerView;
@@ -110,7 +110,7 @@ public class EzVideoPlayerView extends EzVideoPlayerBehaviorView {
     }
 
     private void initPlayer() {
-        mMediaPlayer = new SystemMediaPlayer();
+        mMediaPlayer = new ExoMediaPlayer(getContext());
         mMediaPlayer.setCallback(new SimplePlayerCallback() {
 
             @Override
